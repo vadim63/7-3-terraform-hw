@@ -1,0 +1,20 @@
+---
+# tasks file for roles/nginx
+
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Start nginx and enable
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
+  
+- name: Check nginx
+  ansible.builtin.uri:
+    url: http://localhost
+    status_code: 200
+
